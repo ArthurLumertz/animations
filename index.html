@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS Animations</title>
+    <style>
+        body {
+           padding:0;
+           margin:0;
+           background:#ccc;
+           -webkit-user-drag:none;
+           user-select:none;
+        }
+
+        #credits {
+            position:fixed;
+            width:100%;
+            height:20px;
+            margin:0;
+            bottom:0;
+            background:#666;
+        }
+
+        #credits>span {
+            color:#fff;
+            font-family:'Courier New',monospace;
+            font-size:12px;
+        }
+
+        #credits a {
+            color:#fff;
+            font-family:monospace;
+        }
+
+        #comment {
+            position:absolute;
+            font-family:'Courier New',monospace;
+            font-size:12px;
+            background:#fff;
+            color:#000;
+            width:400px;
+            border-radius:18px;
+            text-align:center;
+            font-size:18px;
+            top:-115px;
+            font-weight:bold;
+            left:-200px;
+        }
+
+        #leftPanel {
+            background:#fff;
+            position:absolute;
+            font-family:'Courier New',monospace;
+            font-size:12px;
+            border-radius:8px;
+            left:0px;
+            top:45px;
+            padding:2px 6px;
+            font-weight:bold;
+            margin:16px 10px;
+        }
+
+        #leftPanel .button {
+            font-size:14px;
+            text-decoration:underline;
+            cursor:pointer;
+        }
+
+        #container {
+            position:absolute;
+            width:0px;
+            left:50%;
+            top:150px;
+        }
+
+        @keyframes rotate {
+            50% {
+                transform:scale(1.5);
+            }
+            100% {
+                transform:scale(1.0);
+            }
+
+        }
+
+        #image {
+            position:absolute;
+            background:url(image.png);
+            width:128px;
+            height:128px;
+            left:-64px;
+        }
+
+        .animation {
+            animation: rotate 2s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <div id="credits">
+        <span><b>Made by <a href="/arthur/index.html">Arthur Lumertz</a></b> | 4/19/23<span>
+    </div>
+    <div id="leftPanel">
+        <div id="animation" class="button" onclick="StartAnimation();">Start Animation</div>
+        <br>
+        <div id="version"></div>
+    </div>
+    <div id="container">
+        <div id="comment">Practicing CSS animations!</div>
+        <div id="image"></div>
+    </div>
+    <script>
+        function l(what){return document.getElementById(what);}
+
+        var Version=0.10;
+        l("version").innerHTML="running v."+Version;
+
+        var animation=0;
+        StartAnimation=function() {
+            if(animation==1) {
+                l("animation").innerHTML="Start Animation";
+                l("image").classList.remove("animation");
+                animation=0;
+            }
+            else if(animation==0) {
+                l("animation").innerHTML="End Animation";
+                l("image").classList.add("animation");
+                animation=1;
+            }
+        }
+    </script>
+</body>
+</html>
